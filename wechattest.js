@@ -4,9 +4,9 @@ const app = express();
 
 // 1. 配置企业微信参数（需替换为你的实际信息）
 const config = {
-  token: 'YOUR_ENTERPRISE_WECHAT_TOKEN', // 企业微信后台设置的Token
-  encodingAESKey: 'YOUR_ENTERPRISE_WECHAT_AES_KEY', // 企业微信后台设置的EncodingAESKey
-  corpId: 'YOUR_ENTERPRISE_WECHAT_CORP_ID' // 你的企业ID
+  token: 'wechatcallbacktoken2024', // 企业微信后台设置的Token
+  encodingAESKey: 'JznExhhRBeGBpyUKislLgtWT6mQoN7MftnOz2vh52Tq', // 企业微信后台设置的EncodingAESKey
+  corpId: 'ww8e5d54432be38f7c' // 你的企业ID
 };
 
 // 2. 解析URL查询参数的中间件
