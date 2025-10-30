@@ -1,0 +1,44 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>企业微信回调服务器</title>
+    <meta charset="utf-8">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .status { padding: 20px; background: #f0f8ff; border-radius: 5px; }
+        .success { color: #28a745; }
+        .info { color: #17a2b8; }
+        .code { background: #f8f9fa; padding: 10px; border-radius: 3px; font-family: monospace; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🤖 企业微信回调服务器</h1>
+        <div class="status">
+            <h2 class="success">✅ 服务器运行中</h2>
+            <p><strong>端口:</strong> 3000</p>
+            <p><strong>验证Token:</strong> <code class="code">wechat_callback_token_2024</code></p>
+            <p><strong>回调URL:</strong> <code class="code">/wechat/callback</code></p>
+        </div>
+
+        <h2>📋 配置说明</h2>
+        <p>在企业微信后台配置以下信息:</p>
+        <ul>
+            <li><strong>回调URL:</strong> <code class="code">http://YOUR_PUBLIC_IP:3000/wechat/callback</code></li>
+            <li><strong>Token:</strong> <code class="code">wechat_callback_token_2024</code></li>
+            <li><strong>EncodingAESKey:</strong> 留空（使用明文模式）</li>
+        </ul>
+
+        <h2>🔧 测试端点</h2>
+        <ul>
+            <li><a href="/wechat/callback?signature=test&timestamp=1234567890&nonce=test&echostr=hello">模拟验证请求</a></li>
+        </ul>
+
+        <div class="info">
+            <p>💡 提示: 如果需要公网访问，可以使用ngrok: <code class="code">ngrok http 3000</code></p>
+        </div>
+    </div>
+</body>
+</html>
