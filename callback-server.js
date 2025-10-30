@@ -264,7 +264,7 @@ class WeChatCallbackServer {
 if (require.main === module) {
     const args = process.argv.slice(2);
     const port = parseInt(args[0]) || 3000;
-    const token = args[1] || 'wechat_callback_token_2024';
+    const token = args[1] || 'wechatcallbacktoken2024';
 
     const server = new WeChatCallbackServer(port, token);
     server.start();
