@@ -39,20 +39,26 @@ class WeChatCallbackServer {
         const query = url.parse(req.url, true).query;
         const { signature, timestamp, nonce, echostr } = query;
 
+        // 对参数进行URL解码
+        const decodedSignature = signature ? querystring.unescape(signature) : null;
+        const decodedTimestamp = timestamp ? querystring.unescape(timestamp) : null;
+        const decodedNonce = nonce ? querystring.unescape(nonce) : null;
+        const decodedEchostr = echostr ? querystring.unescape(echostr) : null;
+
         this.logger.info(`收到企业微信验证请求: ${req.url}`);
 
-        if (!signature || !timestamp || !nonce || !echostr) {
+        if (!decodedSignature || !decodedTimestamp || !decodedNonce || !decodedEchostr) {
             this.logger.error('验证请求缺少必要参数');
             res.writeHead(400, { 'Content-Type': 'text/plain' });
             res.end('Missing required parameters');
             return;
         }
 
-        if (this.verifySignature(signature, timestamp, nonce, echostr)) {
+        if (this.verifySignature(decodedSignature, decodedTimestamp, decodedNonce, decodedEchostr)) {
             this.logger.success('URL验证成功，返回echostr');
-            // 验证成功，直接返回echostr
+            // 验证成功，直接返回解码后的echostr
             res.writeHead(200, { 'Content-Type': 'text/plain' });
-            res.end(echostr);
+            res.end(decodedEchostr);
         } else {
             this.logger.error('URL验证失败，signature不匹配');
             res.writeHead(403, { 'Content-Type': 'text/plain' });
@@ -102,7 +108,9 @@ class WeChatCallbackServer {
 
         switch (msgtype) {
             case 'text':
-                this.logger.info(`  文本内容: ${message.content}`);
+                // 对文本内容进行URL解码
+                const decodedContent = message.content ? querystring.unescape(message.content) : '';
+                this.logger.info(`  文本内容: ${decodedContent}`);
                 break;
             case 'image':
                 this.logger.info(`  图片媒体ID: ${message.mediaid}`);
@@ -141,7 +149,9 @@ class WeChatCallbackServer {
                 this.logger.info(`位置更新: ${message.latitude}, ${message.longitude}`);
                 break;
             case 'click':
-                this.logger.info(`菜单点击: ${message.eventkey}`);
+                // 对菜单事件key进行URL解码
+                const decodedEventKey = message.eventkey ? querystring.unescape(message.eventkey) : '';
+                this.logger.info(`菜单点击: ${decodedEventKey}`);
                 break;
             default:
                 this.logger.info(`其他事件: ${JSON.stringify(message)}`);
