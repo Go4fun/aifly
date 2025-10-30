@@ -4,9 +4,9 @@ const app = express();
 
 // 1. 配置企业微信参数（务必替换为你的实际信息）
 const config = {
-  token: 'YOUR_ENTERPRISE_WECHAT_TOKEN', // 企业微信后台设置的Token
-  encodingAESKey: 'YOUR_ENTERPRISE_WECHAT_AES_KEY', // 企业微信后台设置的EncodingAESKey
-  corpId: 'YOUR_ENTERPRISE_WECHAT_CORP_ID' // 你的企业ID
+  token: '6yplmY3qEQhrpkahlD4NuMRf1W', // 企业微信后台设置的Token
+  encodingAESKey: '1RnfUOuFj8oKK52rsVJmItVOkNQ0zlNSNfaXFNiAmxq', // 企业微信后台设置的EncodingAESKey
+  corpId: 'ww8e5d54432be38f7c' // 你的企业ID
 };
 
 // 2. 中间件配置（保持不变）
